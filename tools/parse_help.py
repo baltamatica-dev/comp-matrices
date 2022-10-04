@@ -42,19 +42,25 @@ def parse_help_file(file_path: str):
             if key == '内核':
                 parse_mode = key
                 line = file_obj.readline()
-                print(f'[kernel func] {parse_func_list(line)}')
+                flist = parse_func_list(line)
+                func_group[parse_mode] = flist
+                # print(f'[kernel func] {flist}')
 
             if key == '脚本':
                 parse_mode = key
                 line = file_obj.readline()
-                print(f'[script func] {parse_func_list(line)}')
+                flist = parse_func_list(line)
+                func_group[parse_mode] = flist
+                # print(f'[script func] {flist}')
 
             if key == '插件':
                 parse_mode = key
                 plugin_list = match.group('plugin_list')
                 print(f'plugin_list={plugin_list}')
                 line = file_obj.readline()
-                print(f'[plugin func] {parse_func_list(line)}')
+                flist = parse_func_list(line)
+                func_group[parse_mode] = flist
+                # print(f'[plugin func] {flist}')
 
             line = file_obj.readline()
         # -- while line
@@ -66,4 +72,4 @@ def parse_help_file(file_path: str):
 if __name__ == '__main__':
     file_full_path = 'help.txt'
     data = parse_help_file(file_full_path)
-    # print(data)
+    print(data)
